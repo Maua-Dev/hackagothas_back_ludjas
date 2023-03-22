@@ -25,5 +25,3 @@ class Test_GetCriminalRecordsViewmodel:
                     'message':'CriminalRecord was retrieved'
                     }
         assert viewmodel == expected
-        
-        
