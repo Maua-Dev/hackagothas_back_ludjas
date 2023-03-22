@@ -5,7 +5,7 @@ from src.shared.domain.entities.criminal import Criminal
 from src.shared.domain.entities.criminal_record import CriminalRecord
 from src.shared.domain.enums.gender_enum import GENDER
 from src.shared.domain.enums.crime_type_enum import CRIME_TYPE
-
+from typing import List
 
 class CriminalRecordRepositoryMock(ICriminalRecordRepository):
 	criminals: List[Criminal]
@@ -18,73 +18,73 @@ class CriminalRecordRepositoryMock(ICriminalRecordRepository):
 				name="The Joker",
 				description="The Joker is a supervillain and the archenemy of Batman. He was first introduced in Batman #1 (Spring 1940) and has remained consistently popular. The Joker is a master criminal with a clown-like appearance, and is considered one of the most infamous criminals within Gotham City.",
 				gender=GENDER.MALE,
-				age=45,
 				height=175,
 				weight=75,
+				region='Gotham'
 			),
 			Criminal(
 				name="Harley Quinn",
 				description="Harley Quinn is a supervillain and a frequent accomplice and lover of the Joker. She was first introduced in Batman: The Animated Series in 1992 and has since become a popular character in the Batman franchise. Harley Quinn is a former psychiatrist who became the Joker's assistant and later his partner in crime.",
 				gender=GENDER.FEMALE,
-				age=31,
 				height=170,
 				weight=63,
+				region='Arkham'
 			),
 			Criminal(
 				name="The Penguin",
 				description="The Penguin is a supervillain and one of Batman's oldest and most persistent enemies. He was first introduced in Detective Comics #58 (December 1941) and has since become a recurring villain in the Batman franchise. The Penguin is a short, portly man with a long nose and a fondness for birds and umbrellas. He is a master criminal who runs a variety of illegal enterprises in Gotham City.",
 				gender=GENDER.MALE,
-				age=52,
 				height=165,
 				weight=80,
+				region='Gotham'
 			),
 			Criminal(
 				name="Catwoman",
 				description="Catwoman is a supervillain and occasional ally of Batman. She was first introduced in Batman #1 (Spring 1940) as a jewel thief with a cat-like costume and a whip. Catwoman is a skilled fighter and acrobat, and is known for her complicated relationship with Batman.",
 				gender=GENDER.FEMALE,
-				age=35,
 				height=168,
 				weight=58,
+				region='Gotham'
 			),
 			Criminal(
 				name="The Riddler",
 				description="The Riddler is a supervillain and one of Batman's oldest enemies. He was first introduced in Detective Comics #140 (October 1948) and has since become a recurring villain in the Batman franchise. The Riddler is a criminal mastermind who leaves clues and puzzles for Batman to solve. He is known for his love of word games and riddles.",
 				gender=GENDER.MALE,
-				age=42,
 				height=180,
 				weight=70,
+				region='Old Gotham'
 			),
 			Criminal(
 				name="Two-Face",
 				description="Two-Face is a supervillain and one of Batman's most dangerous enemies. He was first introduced in Detective Comics #66 (August 1942) and has since become a recurring villain in the Batman franchise. Two-Face is a former district attorney who was disfigured by acid, causing him to develop a split personality. He is known for making decisions based on the flip of a coin.",
 				gender=GENDER.MALE,
-				age=39,
 				height=183,
 				weight=85,
+				region='Penitentiary'
 			),
 			Criminal(
 				name="Scarecrow",
 				description="Scarecrow is a supervillain and one of Batman's most fearsome enemies. He was first introduced in World's Finest Comics #3 (Fall 1941) and has since become a recurring villain in the Batman franchise. Scarecrow is a former professor of psychology who uses his knowledge of fear to terrorize the citizens of Gotham City.",
 				gender=GENDER.MALE,
-				age=47,
 				height=183,
-				weight=63
+				weight=63,
+				region='Chinatown'
 			),
 			Criminal(
 				name="Bane",
 				description="Bane is a supervillain and one of Batman's most physically powerful enemies. He was first introduced in Batman: Vengeance of Bane #1 (January 1993) and has since become a recurring villain in the Batman franchise. Bane is a highly intelligent criminal who uses a drug called Venom to enhance his strength and endurance.",
 				gender=GENDER.MALE,
-				age=40,
 				height=198,
 				weight=120,
+				region='Caribe'
     	                ),
 			Criminal(
 				name="Poison Ivy",
 				description="Poison Ivy is a supervillain and eco-terrorist who uses her knowledge of plant biology to commit crimes. She was first introduced in Batman #181 (June 1966) and has since become a recurring villain in the Batman franchise. Poison Ivy has the ability to control plants and uses them to her advantage in her criminal schemes.",
 				gender=GENDER.FEMALE,
-				age=32,
 				height=170,
 				weight=57,
+				region='Arkham'
 			),
 		]	
 		self.crimes = [
@@ -138,4 +138,8 @@ class CriminalRecordRepositoryMock(ICriminalRecordRepository):
 			),
 		]
 
-	
+	def get_criminal_records(self, criminal_record_id: int) -> CriminalRecord:
+		for record in self.criminal_records:
+			if record.criminal_record_id == criminal_record_id:
+				return record
+		return None
