@@ -1,6 +1,6 @@
 from enum import Enum
 
-class CrimeTypeEnum(Enum):
+class CRIME_TYPE(Enum):
     KIDNAPPING = "KIDNAPPING",
     ROBBERY = "ROBBERY",
     SEXUAL_ASSAULT = "SEXUAL_ASSAULT",
