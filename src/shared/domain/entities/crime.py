@@ -36,6 +36,8 @@ class Crime(abc.ABC):
             raise EntityError('description')
         self.description = description
         
+        if type(sentence) == int:
+            sentence = float(sentence)
         if type(sentence) != float:
             raise EntityError('sentence')
         if sentence < 0:
