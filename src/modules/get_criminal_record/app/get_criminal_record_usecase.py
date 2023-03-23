@@ -3,7 +3,7 @@ from src.shared.helpers.errors.domain_errors import EntityError
 from src.shared.helpers.errors.usecase_errors import NoItemsFound
 
 
-class GetCriminalRecordsUsecase:
+class GetCriminalRecordUsecase:
     def __init__(self, repo: ICriminalRecordRepository):
         self.repo = repo
         
