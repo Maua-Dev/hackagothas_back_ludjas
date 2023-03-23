@@ -5,7 +5,7 @@ class Test_GetCriminalRecordsPresenter:
     def test_get_criminal_record_presenter(self):
         event = {
             "body": {
-                "criminal_record_id": 1
+                "criminal_record_id": "1"
             }
         }
         response = get_criminal_record_presenter(event, None)
@@ -36,7 +36,7 @@ class Test_GetCriminalRecordsPresenter:
     def test_get_criminal_record_presenter_no_items_found(self):
         event = {
             "body": {
-                "criminal_record_id": 777
+                "criminal_record_id": "777"
             }
         }
         response = get_criminal_record_presenter(event, None)
