@@ -5,5 +5,5 @@ from src.shared.domain.entities.criminal_record import CriminalRecord
 class ICriminalRecordRepository(ABC):
     
     @abstractmethod
-    def get_criminal_records(self, criminal_record_id: int) -> CriminalRecord:
+    def get_criminal_record(self, criminal_record_id: int) -> CriminalRecord:
         pass

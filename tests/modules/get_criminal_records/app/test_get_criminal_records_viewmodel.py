@@ -1,10 +1,10 @@
-from src.modules.get_criminal_records.app.get_criminal_records_viewmodel import GetCriminalRecordsViewmodel
+from src.modules.get_criminal_record.app.get_criminal_record_viewmodel import GetCriminalRecordsViewmodel
 from src.shared.infra.repositories.criminal_record_repository_mock import CriminalRecordRepositoryMock
 
 
 class Test_GetCriminalRecordsViewmodel:
     
-    def test_get_criminal_records_viewmodel(self):
+    def test_get_criminal_record_viewmodel(self):
         repo = CriminalRecordRepositoryMock()
         
         criminal_record = repo.criminal_records[0]

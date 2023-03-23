@@ -1,5 +1,5 @@
-from src.modules.get_criminal_records.app.get_criminal_records_viewmodel import GetCriminalRecordsViewmodel
-from src.modules.get_criminal_records.app.get_criminal_records_usecase import GetCriminalRecordsUsecase
+from src.modules.get_criminal_record.app.get_criminal_record_viewmodel import GetCriminalRecordsViewmodel
+from src.modules.get_criminal_record.app.get_criminal_record_usecase import GetCriminalRecordsUsecase
 from src.shared.helpers.errors.controller_errors import MissingParameters, WrongTypeParameter
 from src.shared.helpers.errors.domain_errors import EntityError
 from src.shared.helpers.errors.usecase_errors import NoItemsFound

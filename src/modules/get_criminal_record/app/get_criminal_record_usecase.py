@@ -13,7 +13,7 @@ class GetCriminalRecordsUsecase:
         if criminal_record_id < 0:
             raise EntityError('criminal_record_id')
 
-        criminal_record = self.repo.get_criminal_records(criminal_record_id)
+        criminal_record = self.repo.get_criminal_record(criminal_record_id)
         
         if criminal_record == None:
             raise NoItemsFound('criminal_record_id')

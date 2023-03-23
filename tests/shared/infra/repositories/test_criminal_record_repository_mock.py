@@ -4,15 +4,15 @@ from src.shared.infra.repositories.criminal_record_repository_mock import Crimin
 
 class Test_CriminalRecordRepositoryMock:
     
-    def test_get_criminal_records(self):
+    def test_get_criminal_record(self):
         repo = CriminalRecordRepositoryMock()
-        criminal_record = repo.get_criminal_records(criminal_record_id=1)
+        criminal_record = repo.get_criminal_record(criminal_record_id=1)
         
         assert type(criminal_record) == CriminalRecord
         assert criminal_record == repo.criminal_records[0]
         
-    def test_get_criminal_records_not_found(self):
+    def test_get_criminal_record_not_found(self):
         repo = CriminalRecordRepositoryMock()
-        criminal_record = repo.get_criminal_records(criminal_record_id=999)
+        criminal_record = repo.get_criminal_record(criminal_record_id=999)
         
         assert criminal_record == None

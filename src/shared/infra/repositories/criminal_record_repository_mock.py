@@ -138,7 +138,7 @@ class CriminalRecordRepositoryMock(ICriminalRecordRepository):
 			),
 		]
 
-	def get_criminal_records(self, criminal_record_id: int) -> CriminalRecord:
+	def get_criminal_record(self, criminal_record_id: int) -> CriminalRecord:
 		for record in self.criminal_records:
 			if record.criminal_record_id == criminal_record_id:
 				return record

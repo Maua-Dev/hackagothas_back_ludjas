@@ -1,14 +1,14 @@
 import json
-from src.modules.get_criminal_records.app.get_criminal_records_presenter import get_criminal_records_presenter
+from src.modules.get_criminal_record.app.get_criminal_record_presenter import get_criminal_record_presenter
 
 class Test_GetCriminalRecordsPresenter:
-    def test_get_criminal_records_presenter(self):
+    def test_get_criminal_record_presenter(self):
         event = {
             "body": {
                 "criminal_record_id": 1
             }
         }
-        response = get_criminal_records_presenter(event, None)
+        response = get_criminal_record_presenter(event, None)
         
         expected = {
                 'CriminalRecord':{
@@ -33,13 +33,13 @@ class Test_GetCriminalRecordsPresenter:
         assert response["status_code"] == 200
         assert json.loads(response['body']) == expected
         
-    def test_get_criminal_records_presenter_no_items_found(self):
+    def test_get_criminal_record_presenter_no_items_found(self):
         event = {
             "body": {
                 "criminal_record_id": 777
             }
         }
-        response = get_criminal_records_presenter(event, None)
+        response = get_criminal_record_presenter(event, None)
         
         assert response['status_code'] == 404
         assert json.loads(response['body'])== "No items found for criminal_record_id"
