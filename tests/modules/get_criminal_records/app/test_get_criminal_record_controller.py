@@ -1,7 +1,7 @@
 import pytest
 
-from src.modules.get_criminal_record.app.get_criminal_record_controller import GetCriminalRecordsController
-from src.modules.get_criminal_record.app.get_criminal_record_usecase import GetCriminalRecordsUsecase
+from src.modules.get_criminal_record.app.get_criminal_record_controller import GetCriminalRecordController
+from src.modules.get_criminal_record.app.get_criminal_record_usecase import GetCriminalRecordUsecase
 from src.shared.helpers.external_interfaces.http_models import HttpRequest
 from src.shared.infra.repositories.criminal_record_repository_mock import CriminalRecordRepositoryMock
 
@@ -10,8 +10,8 @@ class Test_GetCriminalRecordsController:
     
     def test_get_criminal_record_controller(self):
         repo = CriminalRecordRepositoryMock()
-        usecase = GetCriminalRecordsUsecase(repo)
-        controller = GetCriminalRecordsController(usecase)
+        usecase = GetCriminalRecordUsecase(repo)
+        controller = GetCriminalRecordController(usecase)
         
         request = HttpRequest(query_params={'criminal_record_id': repo.criminal_records[0].criminal_record_id})
         
@@ -24,8 +24,8 @@ class Test_GetCriminalRecordsController:
 
     def test_get_criminal_record_controller_wrong_type_parameter(self):
         repo = CriminalRecordRepositoryMock()
-        usecase = GetCriminalRecordsUsecase(repo)
-        controller = GetCriminalRecordsController(usecase)
+        usecase = GetCriminalRecordUsecase(repo)
+        controller = GetCriminalRecordController(usecase)
         
         request = HttpRequest(query_params={'criminal_record_id': 'wrong_type'})
         
@@ -36,8 +36,8 @@ class Test_GetCriminalRecordsController:
         
     def test_get_criminal_record_controller_missing_parameter(self):
         repo = CriminalRecordRepositoryMock()
-        usecase = GetCriminalRecordsUsecase(repo)
-        controller = GetCriminalRecordsController(usecase)
+        usecase = GetCriminalRecordUsecase(repo)
+        controller = GetCriminalRecordController(usecase)
         
         request = HttpRequest(query_params={})
         
@@ -48,8 +48,8 @@ class Test_GetCriminalRecordsController:
         
     def test_get_criminal_record_controller_no_items_found(self):
         repo = CriminalRecordRepositoryMock()
-        usecase = GetCriminalRecordsUsecase(repo)
-        controller = GetCriminalRecordsController(usecase)
+        usecase = GetCriminalRecordUsecase(repo)
+        controller = GetCriminalRecordController(usecase)
         
         request = HttpRequest(query_params={'criminal_record_id': 999})
         
@@ -60,8 +60,8 @@ class Test_GetCriminalRecordsController:
         
     def test_get_criminal_record_controller_entity_error(self):
         repo = CriminalRecordRepositoryMock()
-        usecase = GetCriminalRecordsUsecase(repo)
-        controller = GetCriminalRecordsController(usecase)
+        usecase = GetCriminalRecordUsecase(repo)
+        controller = GetCriminalRecordController(usecase)
         
         request = HttpRequest(query_params={'criminal_record_id': -1})
         

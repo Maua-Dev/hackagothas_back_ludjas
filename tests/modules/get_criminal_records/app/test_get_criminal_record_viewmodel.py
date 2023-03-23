@@ -1,4 +1,4 @@
-from src.modules.get_criminal_record.app.get_criminal_record_viewmodel import GetCriminalRecordsViewmodel
+from src.modules.get_criminal_record.app.get_criminal_record_viewmodel import GetCriminalRecordViewmodel
 from src.shared.infra.repositories.criminal_record_repository_mock import CriminalRecordRepositoryMock
 
 
@@ -8,7 +8,7 @@ class Test_GetCriminalRecordsViewmodel:
         repo = CriminalRecordRepositoryMock()
         
         criminal_record = repo.criminal_records[0]
-        viewmodel = GetCriminalRecordsViewmodel(criminal_record).to_dict()
+        viewmodel = GetCriminalRecordViewmodel(criminal_record).to_dict()
         expected = {
                     'CriminalRecord':{
                         'criminal_record_id':1,

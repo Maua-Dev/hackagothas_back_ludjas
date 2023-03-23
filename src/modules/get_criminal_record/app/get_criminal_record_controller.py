@@ -1,5 +1,5 @@
-from src.modules.get_criminal_record.app.get_criminal_record_viewmodel import GetCriminalRecordsViewmodel
-from src.modules.get_criminal_record.app.get_criminal_record_usecase import GetCriminalRecordsUsecase
+from src.modules.get_criminal_record.app.get_criminal_record_viewmodel import GetCriminalRecordViewmodel
+from src.modules.get_criminal_record.app.get_criminal_record_usecase import GetCriminalRecordUsecase
 from src.shared.helpers.errors.controller_errors import MissingParameters, WrongTypeParameter
 from src.shared.helpers.errors.domain_errors import EntityError
 from src.shared.helpers.errors.usecase_errors import NoItemsFound
@@ -7,9 +7,9 @@ from src.shared.helpers.external_interfaces.external_interface import IRequest, 
 from src.shared.helpers.external_interfaces.http_codes import OK, BadRequest, InternalServerError, NotFound
 
 
-class GetCriminalRecordsController:
+class GetCriminalRecordController:
     
-    def __init__(self, usecase: GetCriminalRecordsUsecase):
+    def __init__(self, usecase: GetCriminalRecordUsecase):
         self.usecase = usecase
         
     def __call__(self, request: IRequest) -> IResponse:
@@ -26,7 +26,7 @@ class GetCriminalRecordsController:
                 
             criminal_record = self.usecase(criminal_record_id=request.data.get('criminal_record_id'))
             
-            viewmodel = GetCriminalRecordsViewmodel(criminalRecord=criminal_record)
+            viewmodel = GetCriminalRecordViewmodel(criminalRecord=criminal_record)
             
             return OK(viewmodel.to_dict())
         

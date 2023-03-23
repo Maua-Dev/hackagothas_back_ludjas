@@ -27,7 +27,7 @@ class CriminalViewmodel:
             "weight" : self.weight
         }
 
-class GetCriminalRecordsViewmodel:
+class GetCriminalRecordViewmodel:
     criminal_record_id: int
     criminal: Criminal
     crimes = List[CRIME_TYPE]
