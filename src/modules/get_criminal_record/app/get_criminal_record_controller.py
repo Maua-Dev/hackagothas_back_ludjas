@@ -14,17 +14,20 @@ class GetCriminalRecordController:
         
     def __call__(self, request: IRequest) -> IResponse:
         try:
-            if request.data.get('criminal_record_id') is None:
+            if request.query_params.get('criminal_record_id') is None:
                 raise MissingParameters('criminal_record_id')
             
-            if type(request.data.get('criminal_record_id')) is not int:
+            if type(request.query_params.get('criminal_record_id')) is not str:
                 raise WrongTypeParameter(
                     fieldName='criminal_record_id',
-                    fieldTypeExpected='int',
+                    fieldTypeExpected='str',
                     fieldTypeReceived=request.data.get('criminal_record_id').__class__.__name__
                 )            
                 
-            criminal_record = self.usecase(criminal_record_id=request.data.get('criminal_record_id'))
+            if not request.data.get('criminal_record_id').isdecimal():
+                raise EntityError('criminal_record_id')
+                
+            criminal_record = self.usecase(criminal_record_id=int(request.data.get('criminal_record_id')))
             
             viewmodel = GetCriminalRecordViewmodel(criminalRecord=criminal_record)
             
