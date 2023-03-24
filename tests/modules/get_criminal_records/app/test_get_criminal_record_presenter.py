@@ -1,45 +1,109 @@
 import json
-from src.modules.get_criminal_record.app.get_criminal_record_presenter import get_criminal_record_presenter
+from src.modules.get_criminal_record.app.get_criminal_record_presenter import lambda_handler
 
 class Test_GetCriminalRecordsPresenter:
     def test_get_criminal_record_presenter(self):
         event = {
-            "body": {
-                "criminal_record_id": "1"
-            }
-        }
-        response = get_criminal_record_presenter(event, None)
-        
-        expected = {
-                'CriminalRecord':{
-                    'criminal_record_id':1,
-                    'criminal':{
-                        'name':'The Joker',
-                        'description':'The Joker is a supervillain and the archenemy of Batman. He was first introduced in Batman #1 (Spring 1940) and has remained consistently popular. The Joker is a master criminal with a clown-like appearance, and is considered one of the most infamous criminals within Gotham City.',
-                        'gender':'MALE',
-                        'height':175,
-                        'weight':75
-                    },
-                    'crimes':[
-                        'BURGLARY',
-                        'TERRORISM',
-                        'HOMICIDE'
-                    ],
-                    'is_arrested':False
+            "version": "2.0",
+            "routeKey": "$default",
+            "rawPath": "/my/path",
+            "rawQueryString": "parameter1=value1&parameter1=value2&parameter2=value",
+            "cookies": [
+                "cookie1",
+                "cookie2"
+            ],
+            "headers": {
+                "header1": "value1",
+                "header2": "value1,value2"
+            },
+            "queryStringParameters": {"criminal_record_id": "1"},
+            "requestContext": {
+                "accountId": "123456789012",
+                "apiId": "<urlid>",
+                "authentication": None,
+                "authorizer": {
+                    "claims":
+                        {
+                            "sub": "d61dbf66-a10f-11ed-a8fc-0242ac120002",
+                            "name": "Louis Trevor Snow",
+                            "custom:role": "ADMIN",
+                        }
                 },
-                'message':'CriminalRecord was retrieved'
-                }
+                "domainName": "<url-id>.lambda-url.us-west-2.on.aws",
+                "domainPrefix": "<url-id>",
+                "external_interfaces": {
+                    "method": "POST",
+                    "path": "/my/path",
+                    "protocol": "HTTP/1.1",
+                    "sourceIp": "123.123.123.123",
+                    "userAgent": "agent"
+                },
+                "requestId": "id",
+                "routeKey": "$default",
+                "stage": "$default",
+                "time": "12/Mar/2020:19:03:58 +0000",
+                "timeEpoch": 1583348638390
+            },
+            "body": '{}',
+            "pathParameters": None,
+            "isBase64Encoded": None,
+            "stageVariables": None
+        }
         
-        assert response["status_code"] == 200
-        assert json.loads(response['body']) == expected
+        response = lambda_handler(event, None)
+        
+        assert response["statusCode"] == 200
+        assert json.loads(response['body'])['message'] == "CriminalRecord was retrieved"
         
     def test_get_criminal_record_presenter_no_items_found(self):
         event = {
-            "body": {
-                "criminal_record_id": "777"
-            }
+            "version": "2.0",
+            "routeKey": "$default",
+            "rawPath": "/my/path",
+            "rawQueryString": "parameter1=value1&parameter1=value2&parameter2=value",
+            "cookies": [
+                "cookie1",
+                "cookie2"
+            ],
+            "headers": {
+                "header1": "value1",
+                "header2": "value1,value2"
+            },
+            "queryStringParameters": {"criminal_record_id": "90210"},
+            "requestContext": {
+                "accountId": "123456789012",
+                "apiId": "<urlid>",
+                "authentication": None,
+                "authorizer": {
+                    "claims":
+                        {
+                            "sub": "d61dbf66-a10f-11ed-a8fc-0242ac120002",
+                            "name": "Louis Trevor Snow",
+                            "custom:role": "ADMIN",
+                        }
+                },
+                "domainName": "<url-id>.lambda-url.us-west-2.on.aws",
+                "domainPrefix": "<url-id>",
+                "external_interfaces": {
+                    "method": "POST",
+                    "path": "/my/path",
+                    "protocol": "HTTP/1.1",
+                    "sourceIp": "123.123.123.123",
+                    "userAgent": "agent"
+                },
+                "requestId": "id",
+                "routeKey": "$default",
+                "stage": "$default",
+                "time": "12/Mar/2020:19:03:58 +0000",
+                "timeEpoch": 1583348638390
+            },
+            "body": '{}',
+            "pathParameters": None,
+            "isBase64Encoded": None,
+            "stageVariables": None
         }
-        response = get_criminal_record_presenter(event, None)
         
-        assert response['status_code'] == 404
-        assert json.loads(response['body'])== "No items found for criminal_record_id"
+        response = lambda_handler(event, None)
+        
+        assert response['statusCode'] == 404
+        assert json.loads(response['body']) == "No items found for criminal_record_id"
