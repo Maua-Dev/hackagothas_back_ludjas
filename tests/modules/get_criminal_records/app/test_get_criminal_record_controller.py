@@ -13,7 +13,7 @@ class Test_GetCriminalRecordsController:
         usecase = GetCriminalRecordUsecase(repo)
         controller = GetCriminalRecordController(usecase)
         
-        request = HttpRequest(query_params={'criminal_record_id': repo.criminal_records[0].criminal_record_id})
+        request = HttpRequest(query_params={'criminal_record_id': str(repo.criminal_records[0].criminal_record_id)})
         
         response = controller(request)
         
@@ -27,12 +27,12 @@ class Test_GetCriminalRecordsController:
         usecase = GetCriminalRecordUsecase(repo)
         controller = GetCriminalRecordController(usecase)
         
-        request = HttpRequest(query_params={'criminal_record_id': 'wrong_type'})
+        request = HttpRequest(query_params={'criminal_record_id': 1})
         
         response = controller(request)
         
         assert response.status_code == 400
-        assert response.body == "Field criminal_record_id isn't in the right type.\n Received: str.\n Expected: int"
+        assert response.body == "Field criminal_record_id isn't in the right type.\n Received: int.\n Expected: str"
         
     def test_get_criminal_record_controller_missing_parameter(self):
         repo = CriminalRecordRepositoryMock()
@@ -51,7 +51,7 @@ class Test_GetCriminalRecordsController:
         usecase = GetCriminalRecordUsecase(repo)
         controller = GetCriminalRecordController(usecase)
         
-        request = HttpRequest(query_params={'criminal_record_id': 999})
+        request = HttpRequest(query_params={'criminal_record_id': "999"})
         
         response = controller(request)
         
@@ -63,7 +63,7 @@ class Test_GetCriminalRecordsController:
         usecase = GetCriminalRecordUsecase(repo)
         controller = GetCriminalRecordController(usecase)
         
-        request = HttpRequest(query_params={'criminal_record_id': -1})
+        request = HttpRequest(query_params={'criminal_record_id': "-1"})
         
         response = controller(request)
         
