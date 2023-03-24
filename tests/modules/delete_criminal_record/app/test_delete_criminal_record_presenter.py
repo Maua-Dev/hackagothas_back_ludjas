@@ -217,7 +217,7 @@ class Test_DeleteCriminalRecordPresenter:
         
         response = lambda_handler(event, None)
         assert response['statusCode'] == 400
-        assert json.loads(response['body'])['message'] == "Field criminal_record_id isn't in the right type.\n Received: int.\n Expected: str"
+        assert json.loads(response['body']) == "Field criminal_record_id isn't in the right type.\n Received: int.\n Expected: str"
         
     def test_delete_criminal_record_presenter_not_found(self):
         event = {
